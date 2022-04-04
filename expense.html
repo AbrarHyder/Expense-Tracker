@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense</title>
+    <style>
+        #body{
+            
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+        #header{
+            color: cadetblue;
+            padding-left: 45%;
+        }
+        #m{
+            padding-left:45%;
+            
+        }
+        #inc{
+            padding-left:45%;
+        }
+        #exp{
+            padding-left:45%;
+        }
+        button{
+            margin-left: 45%;
+            margin-top: 0.5%;
+            margin-bottom: 2%;
+        }
+    </style>
+</head>
+<body id ="body">
+    <div id="header"> <h1>Expense Tracker </h1> </div>
+    <div id = "m">
+    <select id ="month">
+        <option value ="January">January</option>
+        <option value ="Feburary">Feburary</option>
+        <option value ="March">March</option>
+        <option value ="April">April</option>
+        <option value ="May">May</option>
+        <option value ="June">June</option>
+        <option value ="July">July</option>
+        <option value ="August">August</option>
+        <option value ="September">September</option>
+        <option value ="October">October</option>
+        <option value ="November">November</option>
+        <option value ="December">December</option>
+    </select>
+    
+    </div>
+    <button onclick="showMonth()"> MONTH </button> 
+    
+    
+
+    <div id = "inc">
+    <input type ="number" name ="income" id = "income">
+    </div> 
+    <button onclick="showIncome()"> INCOME </button>
+
+    <div id = "exp">
+    <input type ="number" name ="expense" id = "expense">
+    </div>
+    <button onclick="showExpense()"> EXPENSE </button>
+   
+    
+    
+    <br>
+    <h2 id =hMonth>  </h2>
+    <h2 id =hIncome> </h2>
+    <h2 id =hExpense>  </h2>
+    <br>
+
+    
+
+    
+ 
+
+    <script>
+        
+        function showMonth(){
+           var month =  document.getElementById("month").value
+           localStorage.setItem('month',month);
+           document.getElementById("hMonth").innerText=month
+        }
+        function showIncome(){
+           var income =  document.getElementById("income").value
+           document.getElementById("hIncome").innerText=income
+           
+        }
+        function showExpense(){
+           var expense =  document.getElementById("expense").value
+           document.getElementById("hExpense").innerText=expense
+        }
+
+
+        
+
+        
+
+
+
+    </script>
+</body>
+
+</html>
