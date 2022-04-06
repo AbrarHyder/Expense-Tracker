@@ -32,7 +32,7 @@
     </style>
 </head>
 <body id ="body">
-    <div id="header"> <h1>Expense Tracker </h1> </div>
+    <!-- <div id="header"> <h1>Expense Tracker </h1> </div>
     <div id = "m">
     <select id ="month">
         <option value ="January">January</option>
@@ -62,15 +62,40 @@
     <div id = "exp">
     <input type ="number" name ="expense" id = "expense">
     </div>
-    <button onclick="showExpense()"> EXPENSE </button>
+    <button onclick="showExpense()"> EXPENSE </button> -->
    
     
+    <form id = "form"> 
+        <select id ="month">
+            <option value ="January">January</option>
+            <option value ="Feburary">Feburary</option>
+            <option value ="March">March</option>
+            <option value ="April">April</option>
+            <option value ="May">May</option>
+            <option value ="June">June</option>
+            <option value ="July">July</option>
+            <option value ="August">August</option>
+            <option value ="September">September</option>
+            <option value ="October">October</option>
+            <option value ="November">November</option>
+            <option value ="December">December</option>
+
+            
+        </select>
+
+        <input type ="number" name ="income" id = "income">
+
+        <input type ="number" name ="expense" id = "expense">
+        <input type ="text" name ="image" id = "image">
+        <button > Submit </button>
+        
+
+
+    </form>
+
+    <div id = "container">  
     
-    <br>
-    <h2 id =hMonth>  </h2>
-    <h2 id =hIncome> </h2>
-    <h2 id =hExpense>  </h2>
-    <br>
+    </div>
 
     
 
@@ -79,25 +104,64 @@
 
     <script>
         
-        function showMonth(){
-           var month =  document.getElementById("month").value
-           localStorage.setItem('month',month);
-           document.getElementById("hMonth").innerText=month
-        }
-        function showIncome(){
+        
+        let arr = []  //global arr to store the array of obj
+        let form = document.getElementById("form")  //add event(submit) lister to the form
+        form.addEventListener("submit",showExpense)
+        function showExpense(event){  //event is a default event to send data to backend server here it is not required therefore we use prevent default func.
+            event.preventDefault()
+
+            // taking the value from the user input(from form)
+
+            var month =  document.getElementById("month").value
+           
+
            var income =  document.getElementById("income").value
-           document.getElementById("hIncome").innerText=income
+          
+
+           var expense =  document.getElementById("expense").value
+           
+           var link = document.getElementById("image").value
+
+           let obj = {   //creating an obj for above values 
+               month,
+               income,
+               expense,
+               link
+
+
+
+           }
+           arr.push(obj)  //pushing obj into global arr
+
+           //now the object is stored in global array
+           
+           displayData()  //invoking func to display that arr of obj
            
         }
-        function showExpense(){
-           var expense =  document.getElementById("expense").value
-           document.getElementById("hExpense").innerText=expense
+
+        function displayData(){  //func to displaY the dATA ON screen
+            document.getElementById("container").innerHTML=""; //used to nullify the display container
+            let div = document.createElement("div")  //creating a div to store child tags 
+            arr.forEach(ele => {
+            let month = document.createElement("h2")  
+                month.innerText=ele.month
+                let income = document.createElement("h2")
+                income.innerText=ele.income
+                let expense = document.createElement("h2")
+                expense.innerText=ele.expense  
+                // how to create img tag
+                let image = document.createElement("img")
+                image.src=`${ele.link}`
+
+                div.append(month,income,expense,image) //appending all childs to the div
+        });
+            document.getElementById("container").append(div) //appending the div to the parent container
         }
 
 
         
 
-        
 
 
 
